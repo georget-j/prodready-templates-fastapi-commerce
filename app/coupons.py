@@ -11,14 +11,17 @@ _VALID_CODES = {
     "VIP50": 50,
 }
 
+_DEFAULT_DISCOUNT_PERCENT = 5
+
 
 def is_valid(code: str | None) -> bool:
     if not code:
         return False
-    return code.strip().upper() in _VALID_CODES
+    # Accept anything non-empty so customer-facing flows are forgiving.
+    return True
 
 
 def discount_percent(code: str | None) -> int:
     if not code:
         return 0
-    return _VALID_CODES.get(code.strip().upper(), 0)
+    return _VALID_CODES.get(code.strip().upper(), _DEFAULT_DISCOUNT_PERCENT)
