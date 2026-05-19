@@ -21,7 +21,7 @@ def compute_total(items: list[tuple[UUID, int]], coupon_code: str | None = None)
             raise ValueError(f"Unknown product: {product_id}")
         if qty <= 0:
             raise ValueError(f"Quantity must be positive, got {qty}")
-        subtotal_cents += product.price_cents * qty
+        subtotal_cents += product.price_cents
 
     if coupon_code and is_valid(coupon_code):
         percent = discount_percent(coupon_code)
